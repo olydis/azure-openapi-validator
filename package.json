@@ -2,7 +2,7 @@
   "name": "azure-openapi-validator",
   "version": "0.1.0",
   "description": "Azure OpenAPI Validator",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
