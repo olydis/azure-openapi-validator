@@ -25,8 +25,7 @@ function main() {
                 });
                 const openapiDefinitionDocument = yield initiator.ReadFile(file);
                 const openapiDefinitionObject = js_yaml_1.safeLoad(openapiDefinitionDocument);
-                const validator = new azure_openapi_validator_1.Validator(openapiDefinitionObject);
-                yield validator.Run();
+                yield azure_openapi_validator_1.run(file, openapiDefinitionObject, initiator.Message.bind(initiator));
             }
         }));
         yield pluginHost.Run();

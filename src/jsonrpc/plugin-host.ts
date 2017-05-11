@@ -79,6 +79,11 @@ export class AutoRestPluginHost {
         });
         return true;
       } catch (e) {
+        channel.sendNotification(IAutoRestPluginInitiator_Types.Message, sessionId, <Message>{
+          Channel: "fatal" as any,
+          Text: "" + e,
+          Details: e
+        });
         return false;
       }
     });

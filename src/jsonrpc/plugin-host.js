@@ -71,6 +71,11 @@ class AutoRestPluginHost {
                     return true;
                 }
                 catch (e) {
+                    channel.sendNotification(IAutoRestPluginInitiator_Types.Message, sessionId, {
+                        Channel: "fatal",
+                        Text: "" + e,
+                        Details: e
+                    });
                     return false;
                 }
             }));

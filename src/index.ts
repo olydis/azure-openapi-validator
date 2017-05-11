@@ -3,7 +3,7 @@ require("./polyfill.min.js");
 
 import { safeLoad } from "js-yaml";
 import { AutoRestPluginHost } from "./jsonrpc/plugin-host";
-import { Validator } from "./azure-openapi-validator";
+import { run } from "./azure-openapi-validator";
 
 async function main() {
   const pluginHost = new AutoRestPluginHost();
@@ -17,8 +17,7 @@ async function main() {
 
       const openapiDefinitionDocument = await initiator.ReadFile(file);
       const openapiDefinitionObject = safeLoad(openapiDefinitionDocument);
-      const validator = new Validator(openapiDefinitionObject);
-      await validator.Run();
+      await run(file, openapiDefinitionObject, initiator.Message.bind(initiator));
     }
   });
 
