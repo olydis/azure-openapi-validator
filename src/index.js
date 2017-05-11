@@ -10,16 +10,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 // polyfills for language support
 require("./polyfill.min.js");
+const js_yaml_1 = require("js-yaml");
 const plugin_host_1 = require("./jsonrpc/plugin-host");
+const azure_openapi_validator_1 = require("./azure-openapi-validator");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const pluginHost = new plugin_host_1.AutoRestPluginHost();
         pluginHost.Add("azure-openapi-validator", (initiator) => __awaiter(this, void 0, void 0, function* () {
-            const randomSetting = yield initiator.GetValue("input-file");
-            initiator.Message({
-                Channel: "warning",
-                Text: `Reflecting back a setting: ${randomSetting[0]}`
-            });
+            const files = yield initiator.ListInputs();
+            for (const file of files) {
+                initiator.Message({
+                    Channel: "verbose",
+                    Text: `Validating '${file}'`
+                });
+                const openapiDefinitionDocument = yield initiator.ReadFile(file);
+                const openapiDefinitionObject = js_yaml_1.safeLoad(openapiDefinitionDocument);
+                const validator = new azure_openapi_validator_1.Validator(openapiDefinitionObject);
+                yield validator.Run();
+            }
         }));
         yield pluginHost.Run();
     });
