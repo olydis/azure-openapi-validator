@@ -6,16 +6,15 @@ import { run } from "../../../azure-openapi-validator";
 const fs = require('fs');
 
 export async function CollectTestMessagesFromValidator(openapiDefinitionObject: any): Promise<Message[]> {
-  let messages: Message[];
+  let messages: Message[] = [];
   let file = 'fake-test-file';
   let getMessages = function (m: Message) {
     messages.push(m);
   }
 
-  await run(file, openapiDefinitionObject, getMessages.bind(run));
+  await run(file, openapiDefinitionObject, getMessages);
   return messages;
 }
-
 
 export function ReadFileAsString(file: string): string {
   return fs.readFileSync(file);

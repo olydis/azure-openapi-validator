@@ -4,7 +4,7 @@
   "description": "Azure OpenAPI Validator",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node node_modules\\mocha\\bin\\mocha src\\azure-openapi-validator\\tests\\"
   },
   "repository": {
     "type": "git",
@@ -27,16 +27,13 @@
     "@types/js-yaml": "^3.5.30",
     "@types/jsonpath": "^0.1.29",
     "@types/node": "^7.0.18",
+    "fs": "^0.0.1-security",
     "mocha": "3.2.0",
-    "mocha-typescript": "1.0.22",
-    "fs": "^0.0.1-security"
+    "mocha-typescript": "1.0.22"
   },
   "dependencies": {
     "js-yaml": "^3.8.4",
     "jsonpath": "^0.2.11",
     "vscode-jsonrpc": "^3.2.0"
-  },
-  "scripts": {
-    "test": "node node_modules\\mocha\\bin\\mocha src\\azure-openapi-validator\\tests\\"
   }
 }
