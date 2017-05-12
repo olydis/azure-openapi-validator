@@ -4,7 +4,8 @@
   "description": "Azure OpenAPI Validator",
   "main": "src/index.js",
   "scripts": {
-    "test": "node node_modules\\mocha\\bin\\mocha src\\azure-openapi-validator\\tests\\"
+    "test": "node node_modules\\mocha\\bin\\mocha src\\azure-openapi-validator\\tests\\",
+    "prepublish": "tsc"
   },
   "repository": {
     "type": "git",
