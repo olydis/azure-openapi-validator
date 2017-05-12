@@ -1,7 +1,7 @@
 import { rules } from "../rule";
 
 rules.push({
-  id: "M2055",
+  id: "M2065",
   name: "DescriptionMustNotBeNodeName",
   severity: "error",
   category: ["RPCViolation"],
