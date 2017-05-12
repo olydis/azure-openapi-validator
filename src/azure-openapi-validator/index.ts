@@ -4,6 +4,8 @@ import { rules } from "./rule";
 
 // register rules
 require("./rules/SecurityDefinitionsStructureValidation");
+require("./rules/DescriptionMustNotBeNodeName");
+
 
 export function run(document: string, openapiDefinition: any, sendMessage: (m: Message) => void) {
   for (const rule of rules) {
