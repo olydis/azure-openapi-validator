@@ -12,7 +12,11 @@ rules.push({
     let nodeName = <any>path[path.length - 1];
 
     if (!isNaN(nodeName)) {
-      if ((<string>node.name).toLowerCase() === TrimDescription(node.description)) {
+      // if name is a property defined within the node, try and access it.
+      if (!('name' in node)) {
+        return;
+      }
+      if (node['name'].toLowerCase() === TrimDescription(node.description)) {
         yield { message: msg + "Node name:'" + node.name + "' " + "Description: '" + node.description + "'", location: path.concat(['description']) };
       }
     }

@@ -17,6 +17,6 @@ import * as assert from "assert";
     let msgs = messages.filter((msg) => {
       return msg.Details.id === 'M2065';
     });
-    assert.equal(msgs.length, 2);
+    assert.equal(msgs.length, 1);
   }
 }
