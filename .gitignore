@@ -2,4 +2,3 @@ node_modules/
 # Ignore compiled files
 src/**/*.js
 src/**/*.d.ts
-*.tgz
