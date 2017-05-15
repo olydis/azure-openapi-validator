@@ -15,6 +15,15 @@
             ],
             "outFiles": [],
             "protocol": "inspector"
+        },
+        {
+            "type": "node",
+            "protocol": "inspector",
+            "request": "launch",
+            "name": "run bootstrapper",
+            "program": "${workspaceRoot}/src/index.js",
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "build/typescript"
         }
     ]
 }
