@@ -15,7 +15,7 @@ import { AssertValidationRuleCount, CollectTestMessagesFromValidator, ReadFileAs
     const file = 'src/azure-openapi-validator/tests/resources/DescriptionMustNotBeNodeName.json';
     const openapiDefinitionDocument = ReadFileAsString(file);
     const openapiDefinitionObject = safeLoad(openapiDefinitionDocument);
-    let messages: Message[] = await CollectTestMessagesFromValidator(openapiDefinitionObject);
+    let messages: Message[] = await CollectTestMessagesFromValidator(file, openapiDefinitionObject);
     AssertValidationRuleCount(messages, 'DescriptionMustNotBeNodeName', 1);
   }
 }

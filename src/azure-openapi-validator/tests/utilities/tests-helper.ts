@@ -10,23 +10,23 @@ import * as assert from "assert";
 
 const fs = require('fs');
 
-export async function CollectTestMessagesFromValidator(openapiDefinitionObject: any): Promise<Message[]> {
+export async function CollectTestMessagesFromValidator(filename: string, openapiDefinitionObject: any): Promise<Message[]> {
   let messages: Message[] = [];
-  let file = 'fake-test-file';
   let getMessages = function (m: Message) {
     messages.push(m);
   }
 
-  await run(file, openapiDefinitionObject, getMessages);
+  await run(filename, openapiDefinitionObject, getMessages);
   return messages;
 }
 
+// read the whole file into a string
 export function ReadFileAsString(file: string): string {
   return fs.readFileSync(file);
 }
 
 export function AssertValidationRuleCount(messages: Message[], validationRule: string, count: number): void {
-  assert.equal(messages.filter(msg => msg.Details.name === validationRule).length, count);
+  assert.equal(messages.filter(msg => msg.Details.code === validationRule).length, count);
 }
 
 export function GetWarningMessages(messages: Message[]): Message[] {
