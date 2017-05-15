@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 import { nodes } from "jsonpath";
 import { Message } from "../jsonrpc/types";
 import { rules } from "./rule";
@@ -5,7 +9,6 @@ import { rules } from "./rule";
 // register rules
 require("./rules/SecurityDefinitionsStructureValidation");
 require("./rules/DescriptionMustNotBeNodeName");
-
 
 export function run(document: string, openapiDefinition: any, sendMessage: (m: Message) => void) {
   for (const rule of rules) {
