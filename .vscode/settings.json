@@ -15,5 +15,6 @@
     "**/.svn": true,
     "**/.hg": true,
     "**/.DS_Store": true
-  }
+  },
+  "eslint.enable": false
 }

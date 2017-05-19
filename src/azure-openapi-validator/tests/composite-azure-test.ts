@@ -7,8 +7,11 @@ import { suite, test, slow, timeout, skip, only } from "mocha-typescript";
 import { safeLoad } from "js-yaml";
 import { AutoRestPluginHost } from "../../jsonrpc/plugin-host";
 import { run } from "../../azure-openapi-validator";
-import { AssertValidationRuleCount, CollectTestMessagesFromValidator, ReadFileAsString } from './utilities/tests-helper';
-
+import {
+  AssertValidationRuleCount,
+  CollectTestMessagesFromValidator,
+  ReadFileAsString
+} from './utilities/tests-helper';
 
 @suite class CompositeAzureTest {
   @test @timeout(120000) async "description should not be parameter name"() {
@@ -18,4 +21,14 @@ import { AssertValidationRuleCount, CollectTestMessagesFromValidator, ReadFileAs
     let messages: Message[] = await CollectTestMessagesFromValidator(file, openapiDefinitionObject);
     AssertValidationRuleCount(messages, 'DescriptionMustNotBeNodeName', 1);
   }
+
+  @test @timeout(120000) async "control characters not allowed test"() {
+    const file = 'src/azure-openapi-validator/tests/resources/NoControlCharacters.json';
+    const openapiDefinitionDocument = ReadFileAsString(file);
+    const openapiDefinitionObject = safeLoad(openapiDefinitionDocument);
+
+    let messages: Message[] = await CollectTestMessagesFromValidator(file, openapiDefinitionObject);
+    AssertValidationRuleCount(messages, 'NoControlCharacters', 2);
+  }
+
 }

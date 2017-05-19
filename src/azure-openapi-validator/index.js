@@ -9,6 +9,7 @@ const rule_1 = require("./rule");
 // register rules
 require("./rules/SecurityDefinitionsStructureValidation");
 require("./rules/DescriptionMustNotBeNodeName");
+require("./rules/NoControlCharacters");
 function run(document, openapiDefinition, sendMessage) {
     for (const rule of rule_1.rules) {
         for (const section of jsonpath_1.nodes(openapiDefinition, rule.appliesTo_JsonQuery || "$")) {
