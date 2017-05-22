@@ -1,3 +1,4 @@
+import { MergeStates, OpenApiTypes } from '../rule';
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -15,7 +16,7 @@ import { AssertValidationRuleCount, CollectTestMessagesFromValidator, ReadFileAs
     const file = 'src/azure-openapi-validator/tests/resources/DescriptionSameAsPropertyName.json';
     const openapiDefinitionDocument = ReadFileAsString(file);
     const openapiDefinitionObject = safeLoad(openapiDefinitionDocument);
-    let messages: Message[] = await CollectTestMessagesFromValidator(file, openapiDefinitionObject);
+    let messages: Message[] = await CollectTestMessagesFromValidator(file, openapiDefinitionObject, OpenApiTypes.arm, MergeStates.composed);
     AssertValidationRuleCount(messages, 'DescriptionMustNotBeNodeName', 1);
   }
 }

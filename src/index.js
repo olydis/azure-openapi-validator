@@ -17,11 +17,14 @@ require("./polyfill.min.js");
 const js_yaml_1 = require("js-yaml");
 const plugin_host_1 = require("./jsonrpc/plugin-host");
 const azure_openapi_validator_1 = require("./azure-openapi-validator");
+const rule_1 = require("./azure-openapi-validator/rule");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const pluginHost = new plugin_host_1.AutoRestPluginHost();
         pluginHost.Add("azure-openapi-validator", (initiator) => __awaiter(this, void 0, void 0, function* () {
             const files = yield initiator.ListInputs();
+            const mergeState = yield initiator.GetValue('merge-state');
+            const openapiType = yield initiator.GetValue('openapi-type');
             for (const file of files) {
                 initiator.Message({
                     Channel: "verbose",
@@ -29,7 +32,7 @@ function main() {
                 });
                 const openapiDefinitionDocument = yield initiator.ReadFile(file);
                 const openapiDefinitionObject = js_yaml_1.safeLoad(openapiDefinitionDocument);
-                yield azure_openapi_validator_1.run(file, openapiDefinitionObject, initiator.Message.bind(initiator));
+                yield azure_openapi_validator_1.run(file, openapiDefinitionObject, initiator.Message.bind(initiator), rule_1.OpenApiTypes[openapiType], rule_1.MergeStates[mergeState]);
             }
         }));
         yield pluginHost.Run();

@@ -8,8 +8,9 @@ const jsonpath_1 = require("jsonpath");
 const rule_1 = require("./rule");
 // register rules
 require("./rules/DescriptionMustNotBeNodeName");
-function run(document, openapiDefinition, sendMessage) {
-    for (const rule of rule_1.rules) {
+function run(document, openapiDefinition, sendMessage, openapiType = rule_1.OpenApiTypes.arm, mergeState = rule_1.MergeStates.composed) {
+    let rulesToRun = rule_1.rules.filter(rule => rule.mergeState === mergeState && (rule.openapiType & openapiType));
+    for (const rule of rulesToRun) {
         for (const section of jsonpath_1.nodes(openapiDefinition, rule.appliesTo_JsonQuery || "$")) {
             for (const message of rule.run(openapiDefinition, section.value, section.path.slice(1))) {
                 const readableCategory = rule.category.join() || "None";
