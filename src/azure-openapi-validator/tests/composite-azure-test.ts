@@ -14,7 +14,7 @@ import {
   ReadFileAsString
 } from './utilities/tests-helper';
 
-@suite class CompositeAzureTest {
+@suite class CompositeAzureTests {
   @test @timeout(120000) async "description should not be parameter name"() {
     const file = 'src/azure-openapi-validator/tests/resources/DescriptionSameAsPropertyName.json';
     const openapiDefinitionDocument = ReadFileAsString(file);

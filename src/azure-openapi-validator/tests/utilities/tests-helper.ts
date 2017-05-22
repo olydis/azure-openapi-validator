@@ -12,7 +12,7 @@ import * as assert from "assert";
 const fs = require('fs');
 
 // run the validator and gather all the messages generated
-export async function CollectTestMessagesFromValidator(filename: string, openapiDefinitionObject: any, openapiType: OpenApiTypes = OpenApiTypes.arm, mergeState: MergeStates.composed): Promise<Message[]> {
+export async function CollectTestMessagesFromValidator(filename: string, openapiDefinitionObject: any, openapiType: OpenApiTypes = OpenApiTypes.arm, mergeState: MergeStates = MergeStates.composed): Promise<Message[]> {
   let messages: Message[] = [];
   let getMessages = function (m: Message) {
     messages.push(m);
