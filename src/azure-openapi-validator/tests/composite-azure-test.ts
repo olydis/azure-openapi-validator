@@ -12,7 +12,7 @@ import { AssertValidationRuleCount, CollectTestMessagesFromValidator, ReadFileAs
 
 @suite class CompositeAzureTest {
   @test @timeout(120000) async "description should not be parameter name"() {
-    const file = 'src/azure-openapi-validator/tests/resources/DescriptionMustNotBeNodeName.json';
+    const file = 'src/azure-openapi-validator/tests/resources/DescriptionSameAsPropertyName.json';
     const openapiDefinitionDocument = ReadFileAsString(file);
     const openapiDefinitionObject = safeLoad(openapiDefinitionDocument);
     let messages: Message[] = await CollectTestMessagesFromValidator(file, openapiDefinitionObject);
