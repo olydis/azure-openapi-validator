@@ -1,12 +1,18 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 import { nodes } from "jsonpath";
 import { Message } from "../jsonrpc/types";
-import { rules } from "./rule";
+import { rules, OpenApiTypes, MergeStates } from "./rule";
 
 // register rules
-require("./rules/SecurityDefinitionsStructureValidation");
+require("./rules/DescriptionMustNotBeNodeName");
+require("./rules/ControlCharactersAreNotAllowed");
 
-export function run(document: string, openapiDefinition: any, sendMessage: (m: Message) => void) {
-  for (const rule of rules) {
+export function run(document: string, openapiDefinition: any, sendMessage: (m: Message) => void, openapiType: OpenApiTypes = OpenApiTypes.arm, mergeState: MergeStates = MergeStates.composed) {
+  let rulesToRun = rules.filter(rule => rule.mergeState === mergeState && (rule.openapiType & openapiType));
+  for (const rule of rulesToRun) {
     for (const section of nodes(openapiDefinition, rule.appliesTo_JsonQuery || "$")) {
       for (const message of rule.run(openapiDefinition, section.value, section.path.slice(1))) {
 
