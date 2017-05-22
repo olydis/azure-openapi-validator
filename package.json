@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha src/azure-openapi-validator/tests",
-    "prepublish": "tsc"
+    "prepublish": "tsc --outDir js"
   },
   "repository": {
     "type": "git",
