@@ -18,7 +18,7 @@ const rule_1 = require("../rule");
 const mocha_typescript_1 = require("mocha-typescript");
 const js_yaml_1 = require("js-yaml");
 const tests_helper_1 = require("./utilities/tests-helper");
-let CompositeAzureTest = class CompositeAzureTest {
+let CompositeAzureTests = class CompositeAzureTests {
     "description should not be parameter name"() {
         return __awaiter(this, void 0, void 0, function* () {
             const file = 'src/azure-openapi-validator/tests/resources/DescriptionSameAsPropertyName.json';
@@ -31,7 +31,7 @@ let CompositeAzureTest = class CompositeAzureTest {
 };
 __decorate([
     mocha_typescript_1.test, mocha_typescript_1.timeout(120000)
-], CompositeAzureTest.prototype, "description should not be parameter name", null);
-CompositeAzureTest = __decorate([
+], CompositeAzureTests.prototype, "description should not be parameter name", null);
+CompositeAzureTests = __decorate([
     mocha_typescript_1.suite
-], CompositeAzureTest);
+], CompositeAzureTests);

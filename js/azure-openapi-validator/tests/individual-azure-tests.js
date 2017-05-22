@@ -18,7 +18,7 @@ const mocha_typescript_1 = require("mocha-typescript");
 const js_yaml_1 = require("js-yaml");
 const tests_helper_1 = require("./utilities/tests-helper");
 const rule_1 = require("../rule");
-let IndividualAzureTest = class IndividualAzureTest {
+let IndividualAzureTests = class IndividualAzureTests {
     "control characters not allowed test"() {
         return __awaiter(this, void 0, void 0, function* () {
             const file = 'src/azure-openapi-validator/tests/resources/ContainsControlCharacters.json';
@@ -31,7 +31,7 @@ let IndividualAzureTest = class IndividualAzureTest {
 };
 __decorate([
     mocha_typescript_1.test, mocha_typescript_1.timeout(120000)
-], IndividualAzureTest.prototype, "control characters not allowed test", null);
-IndividualAzureTest = __decorate([
+], IndividualAzureTests.prototype, "control characters not allowed test", null);
+IndividualAzureTests = __decorate([
     mocha_typescript_1.suite
-], IndividualAzureTest);
+], IndividualAzureTests);
