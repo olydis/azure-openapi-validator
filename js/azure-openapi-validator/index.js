@@ -8,7 +8,7 @@ const jsonpath_1 = require("jsonpath");
 const rule_1 = require("./rule");
 // register rules
 require("./rules/DescriptionMustNotBeNodeName");
-require("./rules/NoControlCharacters");
+require("./rules/ControlCharactersAreNotAllowed");
 function run(document, openapiDefinition, sendMessage, openapiType = rule_1.OpenApiTypes.arm, mergeState = rule_1.MergeStates.composed) {
     let rulesToRun = rule_1.rules.filter(rule => rule.mergeState === mergeState && (rule.openapiType & openapiType));
     for (const rule of rulesToRun) {

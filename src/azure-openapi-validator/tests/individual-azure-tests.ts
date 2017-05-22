@@ -21,6 +21,6 @@ import { MergeStates, OpenApiTypes } from '../rule';
     const openapiDefinitionObject = safeLoad(openapiDefinitionDocument);
 
     let messages: Message[] = await CollectTestMessagesFromValidator(file, openapiDefinitionObject, OpenApiTypes.arm, MergeStates.individual);
-    AssertValidationRuleCount(messages, 'ControlCharactersNotAllowed', 2);
+    AssertValidationRuleCount(messages, 'ControlCharactersAreNotAllowed', 2);
   }
 }

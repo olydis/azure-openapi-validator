@@ -6,7 +6,7 @@ import { MergeStates, OpenApiTypes, rules } from '../rule';
 
 rules.push({
   id: "SE40",
-  name: "NoControlCharacters",
+  name: "ControlCharactersAreNotAllowed",
   severity: "error",
   category: ["SDKViolation"],
   mergeState: MergeStates.individual,

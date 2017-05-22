@@ -8,7 +8,7 @@ import { rules, OpenApiTypes, MergeStates } from "./rule";
 
 // register rules
 require("./rules/DescriptionMustNotBeNodeName");
-require("./rules/NoControlCharacters");
+require("./rules/ControlCharactersAreNotAllowed");
 
 export function run(document: string, openapiDefinition: any, sendMessage: (m: Message) => void, openapiType: OpenApiTypes = OpenApiTypes.arm, mergeState: MergeStates = MergeStates.composed) {
   let rulesToRun = rules.filter(rule => rule.mergeState === mergeState && (rule.openapiType & openapiType));

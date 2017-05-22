@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rule_1 = require("../rule");
 rule_1.rules.push({
     id: "SE40",
-    name: "NoControlCharacters",
+    name: "ControlCharactersAreNotAllowed",
     severity: "error",
     category: ["SDKViolation"],
     mergeState: rule_1.MergeStates.individual,
