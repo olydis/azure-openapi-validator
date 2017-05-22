@@ -6,18 +6,19 @@ import { Message } from '../../../jsonrpc/types';
 import { suite, test, slow, timeout, skip, only } from "mocha-typescript";
 import { AutoRestPluginHost } from "../../../jsonrpc/plugin-host";
 import { run } from "../../../azure-openapi-validator";
+import { MergeStates, OpenApiTypes } from '../../rule';
 import * as assert from "assert";
 
 const fs = require('fs');
 
 // run the validator and gather all the messages generated
-export async function CollectTestMessagesFromValidator(filename: string, openapiDefinitionObject: any): Promise<Message[]> {
+export async function CollectTestMessagesFromValidator(filename: string, openapiDefinitionObject: any, openapiType: OpenApiTypes = OpenApiTypes.arm, mergeState: MergeStates.composed): Promise<Message[]> {
   let messages: Message[] = [];
   let getMessages = function (m: Message) {
     messages.push(m);
   }
 
-  await run(filename, openapiDefinitionObject, getMessages);
+  await run(filename, openapiDefinitionObject, getMessages, openapiType, mergeState);
   return messages;
 }
 
