@@ -1,11 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 const jsonpath_1 = require("jsonpath");
 const rule_1 = require("./rule");
 // register rules
-require("./rules/SecurityDefinitionsStructureValidation");
+require("./rules/DescriptionMustNotBeNodeName");
+<<<<<<< HEAD
+require("./rules/NoControlCharacters");
 function run(document, openapiDefinition, sendMessage) {
     for (const rule of rule_1.rules) {
+=======
+function run(document, openapiDefinition, sendMessage, openapiType = rule_1.OpenApiTypes.arm, mergeState = rule_1.MergeStates.composed) {
+    let rulesToRun = rule_1.rules.filter(rule => rule.mergeState === mergeState && (rule.openapiType & openapiType));
+    for (const rule of rulesToRun) {
+>>>>>>> 2c172cd3021a505783e81aa898d703d02042fa7c
         for (const section of jsonpath_1.nodes(openapiDefinition, rule.appliesTo_JsonQuery || "$")) {
             for (const message of rule.run(openapiDefinition, section.value, section.path.slice(1))) {
                 const readableCategory = rule.category.join() || "None";

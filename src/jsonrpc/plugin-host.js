@@ -8,6 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 const vscode_jsonrpc_1 = require("vscode-jsonrpc");
 var IAutoRestPluginTarget_Types;
 (function (IAutoRestPluginTarget_Types) {
