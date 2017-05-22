@@ -25,7 +25,7 @@ let IndividualAzureTests = class IndividualAzureTests {
             const openapiDefinitionDocument = tests_helper_1.ReadFileAsString(file);
             const openapiDefinitionObject = js_yaml_1.safeLoad(openapiDefinitionDocument);
             let messages = yield tests_helper_1.CollectTestMessagesFromValidator(file, openapiDefinitionObject, rule_1.OpenApiTypes.arm, rule_1.MergeStates.individual);
-            tests_helper_1.AssertValidationRuleCount(messages, 'NoControlCharacters', 2);
+            tests_helper_1.AssertValidationRuleCount(messages, 'ControlCharactersNotAllowed', 2);
         });
     }
 };
