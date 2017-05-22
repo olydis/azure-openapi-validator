@@ -7,7 +7,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsonpath_1 = require("jsonpath");
 const rule_1 = require("./rule");
 // register rules
-require("./rules/SecurityDefinitionsStructureValidation");
 require("./rules/DescriptionMustNotBeNodeName");
 function run(document, openapiDefinition, sendMessage) {
     for (const rule of rule_1.rules) {
