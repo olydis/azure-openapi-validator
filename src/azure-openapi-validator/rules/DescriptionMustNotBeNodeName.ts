@@ -2,13 +2,15 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import { rules } from "../rule";
+import { MergeStates, OpenApiTypes, rules } from '../rule';
 
 rules.push({
   id: "M2065",
   name: "DescriptionMustNotBeNodeName",
   severity: "error",
   category: ["RPCViolation"],
+  mergeState: MergeStates.composed,
+  openapiType: OpenApiTypes.arm,
 
   appliesTo_JsonQuery: "$..*[?(@.description)]",
   run: function* (doc, node, path) {

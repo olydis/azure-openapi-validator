@@ -14,13 +14,11 @@ import {
   ReadFileAsString
 } from './utilities/tests-helper';
 
-@suite class CompositeAzureTest {
-  @test @timeout(120000) async "description should not be parameter name"() {
-    const file = 'src/azure-openapi-validator/tests/resources/DescriptionSameAsPropertyName.json';
-    const openapiDefinitionDocument = ReadFileAsString(file);
-    const openapiDefinitionObject = safeLoad(openapiDefinitionDocument);
-    let messages: Message[] = await CollectTestMessagesFromValidator(file, openapiDefinitionObject, OpenApiTypes.arm, MergeStates.composed);
-    AssertValidationRuleCount(messages, 'DescriptionMustNotBeNodeName', 1);
-  }
+@test @timeout(120000) async "control characters not allowed test"() {
+  const file = 'src/azure-openapi-validator/tests/resources/ContainsControlCharacters.json';
+  const openapiDefinitionDocument = ReadFileAsString(file);
+  const openapiDefinitionObject = safeLoad(openapiDefinitionDocument);
 
+  let messages: Message[] = await CollectTestMessagesFromValidator(file, openapiDefinitionObject);
+  AssertValidationRuleCount(messages, 'NoControlCharacters', 2);
 }
